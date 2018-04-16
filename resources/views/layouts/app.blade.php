@@ -38,25 +38,31 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
 
+                    @if(Route::currentRouteName()!='login')
                     <ul class="nav navbar-nav">
                         &nbsp;
-                        <li> <a class="navbar-brand" href="{{ url('/') }}">
+                        <li> <a class="navbar-brand" href="{{ url('/entradas') }}">
                             Entradas
                             </a>
                         </li>
                         <li>
-                          <a class="navbar-brand" href="{{ url('/') }}">
+                          <a class="navbar-brand" href="{{ url('/salidas') }}">
                               Salidas
                           </a>
                       </li>
                     </ul>
-
+                    @endif
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
                             <!-- <li><a href="{{ route('register') }}">Register</a></li> -->
+                            @if(Route::currentRouteName()=='login' || Route::currentRouteName()=="")
                             <li><a href="{{ route('login') }}">Login</a></li>
+
+                            @else
+                            <li><a href="{{ route('login') }}">Logout</a></li>
+                            @endif
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
