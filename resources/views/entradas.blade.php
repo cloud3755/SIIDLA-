@@ -44,8 +44,7 @@
                             <label class="sr-only" for="ubicacion">Ubicacion</label>
                             <div class="input-group-addon">Ubicacion</div>
                             <select class="form-control" id="ubicacionsel" name="ubicacion">
-                              <option>A01-01</option>
-                              <option>A01-02</option>
+                              <option value="">A01-01</option>
                             </select>
                           </div>
                         </div>

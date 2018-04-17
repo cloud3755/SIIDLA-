@@ -36,7 +36,3 @@ Route::group( ['middleware' => 'auth'],
 );
 */
 Auth::routes();
-
-
-
-
