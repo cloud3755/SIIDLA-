@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Ubicacion;
+use App\Numeros_parte;
 
 class HomeController extends Controller
 {
@@ -28,7 +30,14 @@ class HomeController extends Controller
 
      public function entradas()
     {
-        return view('entradas');
+
+        $ubicaciones =  new Ubicacion;
+        $ubica = $ubicaciones->all();
+
+        $numeros = new Numeros_parte;
+        $num = $numeros->all();
+
+        return view('entradas',compact('ubica','num'));
     }
      public function salidas()
     {

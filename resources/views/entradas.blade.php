@@ -23,8 +23,9 @@
                             <label class="sr-only" for="GIN">GIN</label>
                             <div class="input-group-addon">GIN</div>
                             <select class="form-control" id="ginsel" name="gin" required>
-                              <option>1</option>
-                              <option>2</option>
+                              @foreach($num as $numeros)
+                              <option value="{{$numeros->Numero}}">{{$numeros->Descripcion}}</option>
+                              @endforeach
                             </select>
                           </div>
 
@@ -44,7 +45,9 @@
                             <label class="sr-only" for="ubicacion">Ubicacion</label>
                             <div class="input-group-addon">Ubicacion</div>
                             <select class="form-control" id="ubicacionsel" name="ubicacion">
-                              <option value="">A01-01</option>
+                              @foreach ($ubica as $ubicacion)
+                              <option value="{{$ubicacion->Ubicacion}}">{{$ubicacion->Ubicacion}}</option>
+                              @endforeach
                             </select>
                           </div>
                         </div>
