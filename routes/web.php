@@ -15,8 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/entradas', 'HomeController@entradas')->name('home');
+Route::get('/entradas', 'HomeController@entradas')->name('entradas');
 Route::get('/salidas', 'HomeController@salidas')->name('home');
+Route::post('/entradas', 'EntradasController@nuevaEntrada')->name('home');
 //Route::get('/home', 'HomeController@index')->name('home');
 /*
 Route::get('/login', 'HomeController@login')->name('login');

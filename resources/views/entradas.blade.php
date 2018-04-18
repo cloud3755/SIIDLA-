@@ -1,5 +1,10 @@
 @extends('layouts.app')
-
+@section('styles')
+@parent
+  <link href="{{ asset('css/bootstrap/bootstrap-select.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/bootstrap/bootstrap-select.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/bootstrap/bootstrap-select.css.map') }}" rel="stylesheet">
+@endsection
 @section('content')
 <div class="container">
     <div class="row">
@@ -13,7 +18,9 @@
                             {{ session('status') }}
                         </div>
                     @endif -->
-
+                    @if(Session::has('Guardado'))
+                      <div class="alert alert-success"><span></span><em> {!! session('Guardado') !!}</em></div>
+                    @endif
                     <form class="form" >
                       <div class="row">
                         <div class="col-xs-4">
@@ -22,7 +29,7 @@
 
                             <label class="sr-only" for="GIN">GIN</label>
                             <div class="input-group-addon">GIN</div>
-                            <select class="form-control" id="ginsel" name="gin" required>
+                            <select class="form-control selectpicker" id="ginsel" name="gin" data-live-search="true" data-width="100%" required>
                               @foreach($num as $numeros)
                               <option value="{{$numeros->Numero}}">{{$numeros->Descripcion}}</option>
                               @endforeach
@@ -44,7 +51,7 @@
                           <div class="input-group">
                             <label class="sr-only" for="ubicacion">Ubicacion</label>
                             <div class="input-group-addon">Ubicacion</div>
-                            <select class="form-control" id="ubicacionsel" name="ubicacion">
+                            <select class="form-control selectpicker" id="ubicacionsel" data-live-search="true" data-width="100%" name="ubicacion">
                               @foreach ($ubica as $ubicacion)
                               <option value="{{$ubicacion->Ubicacion}}">{{$ubicacion->Ubicacion}}</option>
                               @endforeach
@@ -68,7 +75,7 @@
                           <div class="input-group">
                             <label class="sr-only" for="cantidad">Fecha de caducidad</label>
                             <div class="input-group-addon">Caducidad</div>
-                            <input type="date" name="fecha">
+                            <input type="date" id="fechaCaducidad" name="fechaCaducidad">
                           </div>
                         </div>
 
@@ -76,7 +83,7 @@
 
                       <br>
                       <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Agregar</button>
+                        <button type="button" id="agregarEntrada" class="btn btn-primary">Agregar</button>
                         <button class="btn btn-danger">Limpiar datos</button>
                       </div>
                     </form>
@@ -94,28 +101,40 @@
                         </div>
                     @endif -->
                     <div class="table-responsive">
-                      <table class="table">
-                        <tr>
-                          <th>GIN</th>
-                          <th>DESCRIPCION</th>
-                          <th>CANTIDAD</th>
-                          <th>LOTE</th>
-                          <th>UBICACION</th>
-                          <th>FECHA</th>
-                        </tr>
-                        <tr>
-                          <td>100160</td>
-                          <td>FD-DVS CHN-11\20X500U</td>
-                          <td>10</td>
-                          <td>125</td>
-                          <td>A01-04</td>
-                          <td>18/10/2017</td>
-                        </tr>
+                    <button id="Procesar" type="button">Procesar</button>
+                      <table class="table" id="tableEntrada">
+                        <thead>
+                          <tr>
+                            <th>GIN</th>
+                            <th>DESCRIPCION</th>
+                            <th>CANTIDAD</th>
+                            <th>LOTE</th>
+                            <th>UBICACION</th>
+                            <th>FECHA</th>
+                            <th>Quitar</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        
+                        </tbody>
                       </table>
+                    <form hidden  id="form" method="POST" action="/entradas" }}>
+                       {{ csrf_field() }}
+                      <input type="text" id="datosEntrada" name="datosEntrada" /> 
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+  @section('scripts')
+  @parent
+  <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('js/utils/date.js') }}"></script>
+  <script src="{{ asset('js/entradas/appEntradas.js') }}"></script>
+  <script src="{{ asset('js//bootstrap/bootstrap-select.min.js') }}"></script>
+  <script src="{{ asset('js//bootstrap/bootstrap-select.js') }}"></script>
+  
+  @endsection
 @endsection

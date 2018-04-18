@@ -11,8 +11,12 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    @section('styles')
+   
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="/css/Personalizados.css">
+
+    @show
 </head>
 <body>
     <div id="app">
@@ -90,10 +94,14 @@
             </div>
         </nav>
 
-        @yield('content')
+    @yield('content')
     </div>
+    @section('scripts')
+    <script src="{{ asset('js/bootstrap/popper.js') }}"></script>
 
-    <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.3.1.js') }}"></script>
+    <script src="{{ asset('js/bootstrap/bootstrap.js') }}"></script>
+    @show
 </body>
 </html>
