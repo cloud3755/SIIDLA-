@@ -15,6 +15,7 @@ class EntradasController extends Controller
         //$var ="";
         foreach($entradas as $entrada)
         {
+          //  $inventario = Inventario::where
             $inventario = new Inventario();
             $inventario->gin = $entrada->gin;
             $inventario->ubicacion = $entrada->ubicacion;

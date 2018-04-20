@@ -69,6 +69,7 @@ function quitarfila(e)
 {
     gin = e.data('gin');
     $('#gin'+gin).remove();
+    delete arrayGins[gin];
     
 }
 

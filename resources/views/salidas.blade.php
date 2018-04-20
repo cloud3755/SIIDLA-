@@ -14,12 +14,14 @@
                                 {{ session('status') }}
                             </div>
                         @endif -->
-
+                        @section('mensajesBackEnd')
+                        @parent
+                        @endsection
                         <form class="form" >
                         
                         
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary">SALIDA</button>
+                            <button type="button" id="ProcesarSalida" class="btn btn-primary">SALIDA</button>
                             <button class="btn btn-danger">Limpiar datos</button>
                         </div>
                         </form>
@@ -40,32 +42,52 @@
                         @endif -->
                         <div class="table-responsive">
                         <table class="table">
+                        <thead>
                             <tr>
                             <th>GIN</th>
                             <th>DESCRIPCION</th>
                             <th>CANTIDAD</th>
                             <th>LOTE</th>
                             <th>UBICACION</th>
-                            <th>FECHA</th>
+                            <th>FECHA de caducidad</th>
                             <th>APLICAR</th>
                             <th>CANTIDAD A DAR SALIDA</th>
                             </tr>
-                            <tr>
-                            <td>100160</td>
-                            <td>FD-DVS CHN-11\20X500U</td>
-                            <td>10</td>
-                            <td>125</td>
-                            <td>A01-04</td>
-                            <td>18/10/2017</td>
-                            <td><input type="checkbox" checked></td>
-                            <td><input type="number" ></td>
+                        </thead>
+                        <tbody>
+                            @foreach($inventario as $record)
+                            <tr class="salidaRow" id="{{$record->id}}">
+                                <td>{{$record->gin}}</td>
+                                <td>{{$record->Descripcion}}</td>
+                                <td>{{$record->cantidad}}</td>
+                                <td>{{$record->lote}}</td>
+                                <td>{{$record->ubicacion}}</td>
+                                <td>{{$record->fecha_caducidad}}</td>
+                                <td><input class="chkAplicar" type="checkbox"></td>
+                                <td><input class="Cantidad" type="number" max="{{$record->cantidad}}" min="1" value="{{$record->cantidad}}" /></td>
                             </tr>
+                            @endforeach
+                        </tbody>
                         </table>
                         </div>
                     </div>
                 </div>
             </div>
+            <form hidden id="form" method="POST" action="/salidas" }}>
+                {{ csrf_field() }}
+                <input type="text" id="datosSalida" name="datosSalida" /> 
+            </form>
         <!--</div>-->
     </div>
 </div>
 @endsection
+
+@section('scripts')
+  @parent
+  <script src="{{ asset('js/app.js') }}"></script>
+ 
+  <script src="{{ asset('js/salidas/appSalidas.js') }}"></script>
+  <script src="{{ asset('js//bootstrap/bootstrap-select.min.js') }}"></script>
+  <script src="{{ asset('js//bootstrap/bootstrap-select.js') }}"></script>
+  
+  @endsection

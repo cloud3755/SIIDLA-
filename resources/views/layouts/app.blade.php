@@ -95,6 +95,11 @@
         </nav>
 
     @yield('content')
+    @section('mensajesBackEnd')
+        @if(Session::has('Guardado'))
+            <div class="alert alert-success"><span></span><em> {!! session('Guardado') !!}</em></div>
+        @endif
+    @show
     </div>
     @section('scripts')
     <script src="{{ asset('js/bootstrap/popper.js') }}"></script>
@@ -103,5 +108,6 @@
     <script src="{{ asset('js/jquery-3.3.1.js') }}"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.js') }}"></script>
     @show
+    
 </body>
 </html>

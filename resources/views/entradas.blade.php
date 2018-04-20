@@ -18,9 +18,9 @@
                             {{ session('status') }}
                         </div>
                     @endif -->
-                    @if(Session::has('Guardado'))
-                      <div class="alert alert-success"><span></span><em> {!! session('Guardado') !!}</em></div>
-                    @endif
+                    @section('mensajesBackEnd')
+                    @parent
+                    @endsection
                     <form class="form" >
                       <div class="row">
                         <div class="col-xs-4">

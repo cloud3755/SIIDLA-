@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Ubicacion;
 use App\Numeros_parte;
+use \App\Inventario;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -41,7 +43,14 @@ class HomeController extends Controller
     }
      public function salidas()
     {
-        return view('salidas');
+        $inventario = 
+            DB::table('inventarios')
+            ->join("numeros_partes", "numeros_partes.Numero", "=", "inventarios.gin" )
+            ->where('inventarios.cantidad', '>', '0')
+            ->select("inventarios.*", "numeros_partes.Descripcion")
+            ->get();
+        
+        return view('salidas', compact('inventario'));
     }
 /*
     public function login()
