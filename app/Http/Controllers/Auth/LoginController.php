@@ -52,8 +52,9 @@ class LoginController extends Controller
         }
         else
         {
-            return Redirect::to('/b');
+            return Redirect::to('/login');
 
         }
+        
     }
 }

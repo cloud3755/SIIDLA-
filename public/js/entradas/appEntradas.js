@@ -6,7 +6,9 @@ $(function(){
     $("#fechaCaducidad").val(new Date().Hoy());
     $('#agregarEntrada').on('click', agregarRegistro);
     $('#Procesar').on('click', submitForm);
-    
+    $('.removegin').on('click', function(){
+            quitarfila($(this));
+    });
    
 });
 
@@ -68,7 +70,8 @@ function cantidadChange(e)
 function quitarfila(e)
 {
     gin = e.data('gin');
-    $('#gin'+gin).remove();
+    
+    $('#'+gin).remove();
     delete arrayGins[gin];
     
 }
