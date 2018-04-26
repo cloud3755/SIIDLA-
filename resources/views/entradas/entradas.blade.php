@@ -78,14 +78,40 @@
                             <input type="date" id="fechaCaducidad" name="fechaCaducidad">
                           </div>
                         </div>
+                      </div>
+                      
+                      <br>
+                      <div class="row">
+                        <div class="col-xs-4">
 
+                          <div class="input-group">
+                                 
+                            <label class="sr-only" for="GIN">Site</label>
+                            <div class="input-group-addon">Site</div>
+                                     
+                            <select {{(Auth::user()->id_rol ==1 || Auth::user()->id_rol ==2) ? ""  : "disabled"}}  class="form-control" id="sucursal" name="sucursal" required>
+                              @foreach($sucursales as $sucursal)
+                              @if(Auth::user()->id_sucursal==$sucursal->id)
+                                <option value="{{$sucursal->id}}" selected>{{$sucursal->nombre}}</option>
+                              @else
+                                <option value="{{$sucursal->id}}">{{$sucursal->nombre}}</option>
+                              @endif
+                              @endforeach
+                            </select>
+                            
+                    
+                          </div>
+
+                        </div>
                       </div>
 
+                      
                       <br>
                       <div class="text-center">
                         <button type="button" id="agregarEntrada" class="btn btn-primary">Agregar</button>
                         <button class="btn btn-danger">Limpiar datos</button>
                       </div>
+                   
                     </form>
 
                 </div>
@@ -121,6 +147,7 @@
                     <form hidden  id="form" method="POST" action="/entradas" }}>
                        {{ csrf_field() }}
                       <input type="text" id="datosEntrada" name="datosEntrada" /> 
+                      <input type="number" id="id_sucursal" name="id_sucursal" />
                     </form>
                     </div>
                 </div>

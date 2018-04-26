@@ -51,8 +51,8 @@ class UsersTableSeeder extends Seeder {
                    'name' => "DSV",
                    'email'     => 'dsv@dsv.com',
                    'password'    =>  Hash::make('dsv@dsv.com'),
-                   'sucursal'      =>  0,
-                   'rol'      =>  1,
+                   'id_sucursal'      =>  0,
+                   'id_rol'      =>  1,
                    'supervisor'        =>  0
                  )
             );
@@ -60,8 +60,8 @@ class UsersTableSeeder extends Seeder {
                    'name' => "User",
                    'email'     => 'User@dsv.com',
                    'password'    =>  Hash::make('User@dsv.com'),
-                   'sucursal'      =>  1,
-                   'rol'      =>  3,
+                   'id_sucursal'      =>  1,
+                   'id_rol'      =>  3,
                    'supervisor'        =>  1
                  )
             );

@@ -19,11 +19,11 @@ function agregarRegistro()
     var gin = $('#ginsel').val();
     var cantidad;
     var arrayGin = {};
-    if($("#gin"+gin).length)
+    if($("#"+gin).length)
     {
-        var can = parseFloat($('#gin'+gin).find('.Cantidad').val());
+        var can = parseFloat($('#'+gin).find('.Cantidad').val());
         
-        $('#gin'+gin).find('.Cantidad').val(++can);
+        $('#'+gin).find('.Cantidad').val(++can);
         arrayGins[gin]['cantidad'] = can;
         return;
     }
@@ -80,5 +80,7 @@ function submitForm()
 {
     //base_64
     $('#datosEntrada').val(JSON.stringify(arrayGins));
+    $('#id_sucursal').val($('#sucursal').val());
+    //alert($('#sucursal').val());return;
     $('#form').submit();
 }

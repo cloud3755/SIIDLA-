@@ -2,3 +2,17 @@ body{
   /* background-image: url("/fondo.jpg");
   background-attachment: fixed; */
 }
+
+.checkListTitle
+{
+  background-color : #FFF !important;
+  background: #000000 !important;
+  
+}
+
+.checkList tr:nth-child(even)
+{
+  background: #CCC
+}
+.checkList tr:nth-child(odd) {background: #FFF}
+

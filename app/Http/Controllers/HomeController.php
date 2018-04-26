@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Ubicacion;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Validator;
+
 use App\Numeros_parte;
 use \App\Inventario;
-use Illuminate\Support\Facades\DB;
+use App\Roles;
+use App\Sucursal;
+use App\User;
+use App\Ubicacion;
+
 
 class HomeController extends Controller
 {
@@ -30,33 +38,72 @@ class HomeController extends Controller
         return view('home');
     }
 
-     public function entradas()
-    {
 
-        $ubicaciones =  new Ubicacion;
-        $ubica = $ubicaciones->all();
-
-        $numeros = new Numeros_parte;
-        $num = $numeros->all();
-
-        return view('entradas',compact('ubica','num'));
-    }
-     public function salidas()
+    public function showRegistrationForm()
     {
-        $inventario = 
-            DB::table('inventarios')
-            ->join("numeros_partes", "numeros_partes.Numero", "=", "inventarios.gin" )
-            ->where('inventarios.cantidad', '>', '0')
-            ->select("inventarios.*", "numeros_partes.Descripcion")
-            ->get();
-        
-        return view('salidas', compact('inventario'));
-    }
-/*
-    public function login()
-    {
-        return view('auth/login');
+        $sucursales = new Sucursal();
+        $sucursales =  $sucursales->all();
+        $roles = Roles::find([2,3]);
+        return view('auth.register', \compact('sucursales','roles'));
     }
 
-*/
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+    }
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return \App\User
+     */
+    protected function create(array $data)
+    {
+        //$this->middleware('rol:1,2');
+        //dd($data);
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+            'id_sucursal' => $data['id_sucursal'],
+            'id_rol' => $data['id_rol'],
+            'supervisor' => Auth::User()->id
+        ]);
+    }
+
+    public function register1(Request $request)
+    {
+        //dd(Auth::User()->id);
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+        /*
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());*/
+        \Session::flash('Guardado','Se Agrego el usuario correctamente');
+        return redirect()->route("register");  
+    }
+protected function guard()
+    {
+        return Auth::guard();
+    }
+
+    /**
+     * The user has been registered.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function registered(Request $request, $user)
+    {
+        //
+    }
 }

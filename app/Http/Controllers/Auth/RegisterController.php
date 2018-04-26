@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Auth;
 
 class RegisterController extends Controller
 {
@@ -62,13 +63,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        //$this->middleware('rol:1,2');
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'sucursal' => $data['sucursal'],
-            'rol' => $data['rol'],
-            'supervisor' => $data['supervisor'],
+            'id_sucursal' => $data['id_sucursal'],
+            'id_rol' => $data['id_rol'],
+            'supervisor' => Auth::User()->id
         ]);
     }
+
+    
 }

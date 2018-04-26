@@ -53,7 +53,19 @@
                           <a class="navbar-brand" href="{{ url('/salidas') }}">
                               Salidas
                           </a>
-                      </li>
+                        </li>
+                        @if(Auth::user()->isAdmin())
+                        <li>
+                          <a class="navbar-brand" href="{{ url('/entradas/show') }}">
+                              Historial de entradas
+                          </a>
+                        </li>
+                        <li>
+                          <a class="navbar-brand" href="{{ url('/salidas/show') }}">
+                              Historial de salidas
+                          </a>
+                        </li>
+                        @endif
                     </ul>
                     @endif
                     <!-- Right Side Of Navbar -->
@@ -80,8 +92,9 @@
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
+                                        @if(Auth::user()->isAdmin())
                                         <a href="{{ route('register') }}">Registrar usuarios</a>
-
+                                        @endif
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>

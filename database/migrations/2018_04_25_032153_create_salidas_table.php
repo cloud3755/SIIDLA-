@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNumerosPartesTable extends Migration
+class CreateSalidasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateNumerosPartesTable extends Migration
      */
     public function up()
     {
-        Schema::create('numeros_partes', function (Blueprint $table) {
+        Schema::create('salidas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('Numero');
-            $table->string('Descripcion',150);
-            $table->string('Area',15);
-            $table->integer('Sucursal');
+            $table->integer('id_usuario');
+            $table->date('fecha_Salida');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateNumerosPartesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('numeros_partes');
+        Schema::dropIfExists('salidas');
     }
 }

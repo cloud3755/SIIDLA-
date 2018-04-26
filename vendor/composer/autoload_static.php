@@ -312,6 +312,8 @@ class ComposerStaticInit98e161a3d3f9c95fcec098152ccaa7a8
 
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Entrada' => __DIR__ . '/../..' . '/app/Entrada.php',
+        'App\\EntradaDetalle' => __DIR__ . '/../..' . '/app/EntradaDetalle.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -324,6 +326,7 @@ class ComposerStaticInit98e161a3d3f9c95fcec098152ccaa7a8
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
+        'App\\Http\\Middleware\\RoleMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/RoleMiddleware.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
@@ -335,6 +338,8 @@ class ComposerStaticInit98e161a3d3f9c95fcec098152ccaa7a8
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Roles' => __DIR__ . '/../..' . '/app/Roles.php',
+        'App\\Salida' => __DIR__ . '/../..' . '/app/Salida.php',
+        'App\\SalidaDetalle' => __DIR__ . '/../..' . '/app/SalidaDetalle.php',
         'App\\Sucursal' => __DIR__ . '/../..' . '/app/Sucursal.php',
         'App\\Ubicacion' => __DIR__ . '/../..' . '/app/Ubicacion.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',

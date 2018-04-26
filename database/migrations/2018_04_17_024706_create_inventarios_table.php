@@ -23,6 +23,7 @@ class CreateInventariosTable extends Migration
           $table->dateTime('fechaHora_entrada');
           $table->integer('id_usuario');
           $table->integer('id_sucursal');
+          $table->integer('id_entrada');
           $table->timestamps();
         });
     }

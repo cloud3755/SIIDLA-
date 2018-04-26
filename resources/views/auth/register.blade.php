@@ -8,14 +8,11 @@
                 <div class="panel-heading">Register</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+                    <form class="form-horizontal" method="POST" action="register">
                         {{ csrf_field() }}
-                        <input type="hidden" name="sucursal" value="1">
-                        <input type="hidden" name="rol" value="1">
-                        <input type="hidden" name="supervisor" value="1">
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            <label for="name" class="col-md-4 control-label">Nombre</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
@@ -29,7 +26,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <label for="email" class="col-md-4 control-label">E-Mail Address(User name)</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
@@ -61,6 +58,30 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="id_sucursal" class="col-md-4 control-label">Sucursal</label>
+
+                            <div class="col-md-6">
+                            <select class="form-control" id="id_sucursal" name="id_sucursal" required>
+                              @foreach($sucursales as $sucursal)
+                                <option value="{{$sucursal->id}}">{{$sucursal->nombre}}</option>
+                              @endforeach
+                            </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="id_rol" class="col-md-4 control-label">Rol</label>
+
+                            <div class="col-md-6">
+                            <select class="form-control" id="id_rol" name="id_rol"required>
+                              @foreach($roles as $rol)
+                                <option value="{{$rol->id}}">{{$rol->rol}}</option>
+                              @endforeach
+                            </select>
                             </div>
                         </div>
 
