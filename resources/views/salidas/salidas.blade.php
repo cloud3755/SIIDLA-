@@ -61,7 +61,7 @@
                             <tr class="salidaRow" data-idSucursal="{{$record->id_sucursal}}" data-idEntrada="{{$record->id_entrada}}" id="{{$record->id}}">
                                 <td class="gin">{{$record->gin}}</td>
                                 <td class="descripcion">{{$record->Descripcion}}</td>
-                                <td class="cantidad">{{$record->cantidad}}</td>
+                                <td>{{$record->cantidad}}</td>
                                 <td class="lote">{{$record->lote}}</td>
                                 <td class="ubicacion">{{$record->ubicacion}}</td>
                                 <td class="fecha_caducidad" >{{$record->fecha_caducidad}}</td>
