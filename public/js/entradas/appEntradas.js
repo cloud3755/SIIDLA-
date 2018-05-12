@@ -28,7 +28,7 @@ function agregarRegistro()
         return;
     }
 
-    var descripcion = $('#ginsel :selected').text();
+    var descripcion = $('#ginsel :selected').data('descripcion');
     cantidad = $('#cantidad').val();
     var lote = $('#lote').val();
     var ubicacion = $('#ubicacionsel').val();

@@ -70,6 +70,13 @@ Route::get('/entradas/show', 'EntradasController@showEntradas')->name("showEntra
 Route::get('/salidas/show', 'SalidasController@showSalidas')->name("showSalidas");
 Route::get('/salidas/show/{id}', 'SalidasController@showSalidasDetalle')->name("showSalidasDetalle");
 Route::get('/entradas/show/{id}', 'EntradasController@showEntradasDetalle')->name("showEntradasDetalle");
+
+Route::get('/numerosParte', 'numeroParteController@numerosParte')->name('numerosParte');
+Route::post('/numerosParte', 'numeroParteController@nuevo')->name('numerosPartePost');
+
+Route::get('/unidadMedida', 'numeroParteController@unidadMedida')->name('unidadMedida');
+Route::post('/unidadMedida', 'numeroParteController@nuevaUnidadMedida')->name('unidadMedidaPost');
+
     }
 );
 

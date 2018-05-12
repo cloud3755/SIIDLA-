@@ -18,7 +18,9 @@ class CreateNumerosPartesTable extends Migration
             $table->integer('Numero');
             $table->string('Descripcion',150);
             $table->string('Area',15);
-            $table->integer('Sucursal');
+            $table->integer('id_sucursal')->default(0);
+            $table->integer('id_unidad_medida')->default(0);
+            $table->tinyInteger('activo')->default(1);
             $table->timestamps();
         });
     }

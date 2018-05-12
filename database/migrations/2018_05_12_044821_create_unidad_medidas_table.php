@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRolesTable extends Migration
+class CreateUnidadMedidasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('unidades_medida', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('rol',30)->unique();
-            $table->string('descripcion',100);
+            $table->string('Nombre', 20);
+            $table->string('Descripcion', 50);
+            $table->string('Abreviatura', 5);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('unidad_medidas');
     }
 }

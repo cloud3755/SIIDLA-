@@ -55,6 +55,16 @@
                           </a>
                         </li>
                         @if(Auth::user()->isAdmin())
+                         <li>
+                          <a class="navbar-brand" href="{{ url('/numerosParte') }}">
+                              Numeros de parte
+                          </a>
+                        </li>
+                        <li>
+                          <a class="navbar-brand" href="{{ url('/unidadMedida') }}">
+                              Unidades de medida
+                          </a>
+                        </li>
                         <li>
                           <a class="navbar-brand" href="{{ url('/entradas/show') }}">
                               Historial de entradas
@@ -106,21 +116,36 @@
                 </div>
             </div>
         </nav>
-
-    @yield('content')
     @section('mensajesBackEnd')
         @if(Session::has('Guardado'))
             <div class="alert alert-success"><span></span><em> {!! session('Guardado') !!}</em></div>
         @endif
     @show
+
+    @yield('content')
+    
     </div>
+
     @section('scripts')
     <script src="{{ asset('js/bootstrap/popper.js') }}"></script>
 
-    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/jquery-3.3.1.js') }}"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.js') }}"></script>
     @show
+    @section('scriptsSelect')
+    <!--Script select 2 -->
+        <script src="{{ asset('js//bootstrap/bootstrap-select.min.js') }}"></script>
+        <script src="{{ asset('js//bootstrap/bootstrap-select.js') }}"></script>
+    <!--  -->
+    @show
+
     
+    
+    @section('scriptsDataTable')
+    <!--Datatables, nesesario ponerlas en ese orden, -->
+    <script src="{{ asset('js//bootstrap/datatables.js') }}"></script>
+    <script src="{{ asset('js/utils/datatable.js') }}"></script>
+    <!--  -->
+    @show
 </body>
 </html>

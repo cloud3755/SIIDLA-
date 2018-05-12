@@ -31,7 +31,7 @@
                             <div class="input-group-addon">GIN</div>
                             <select class="form-control selectpicker" id="ginsel" name="gin" data-live-search="true" data-width="100%" required>
                               @foreach($num as $numeros)
-                              <option value="{{$numeros->Numero}}">{{$numeros->Descripcion}}</option>
+                              <option data-descripcion="{{$numeros->Descripcion}}" value="{{$numeros->Numero}}">{{$numeros->Numero}}</option>
                               @endforeach
                             </select>
                           </div>
@@ -155,13 +155,14 @@
         </div>
     </div>
 </div>
-  @section('scripts')
-  @parent
-  <script src="{{ asset('js/app.js') }}"></script>
-  <script src="{{ asset('js/utils/date.js') }}"></script>
-  <script src="{{ asset('js/entradas/appEntradas.js') }}"></script>
-  <script src="{{ asset('js//bootstrap/bootstrap-select.min.js') }}"></script>
-  <script src="{{ asset('js//bootstrap/bootstrap-select.js') }}"></script>
+
   
-  @endsection
+
+
 @endsection
+@section('scripts')
+@parent
+<script src="{{ asset('js/utils/date.js') }}"></script>
+<script src="{{ asset('js/entradas/appEntradas.js') }}"></script>
+@endsection 
+

@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->integer('id_sucursal');
             $table->integer('id_rol');
             $table->integer('supervisor');
+            $table->tinyInteger('activo')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

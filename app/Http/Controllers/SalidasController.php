@@ -44,6 +44,7 @@ class SalidasController extends Controller
     }
     public function nuevaSalida(Request $request)
     {
+        //dd($request->datosSalida);
         $fechaHora = date("Y-m-d H:i:s");
         $salidas = \json_decode($request->datosSalida);
         //dd($salidas);

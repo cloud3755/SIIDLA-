@@ -13,7 +13,7 @@ class CreateUbicacionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ubicacions', function (Blueprint $table) {
+        Schema::create('ubicaciones', function (Blueprint $table) {
           $table->increments('id');
           $table->string('Ubicacion',10);
           $table->string('Descripcion');
@@ -29,6 +29,6 @@ class CreateUbicacionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ubicacions');
+        Schema::dropIfExists('ubicaciones');
     }
 }
