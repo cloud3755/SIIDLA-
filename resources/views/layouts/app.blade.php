@@ -12,18 +12,18 @@
 
     <!-- Styles -->
     @section('styles')
-   
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="/css/Personalizados.css">
 
     @show
 </head>
 <body>
-    <div id="app">
+    <!-- <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
-                <div class="navbar-header">
-                    <!-- Collapsed Hamburger -->
+                <di v class="navbar-header">
+
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
                         <span class="sr-only">Toggle Navigation</span>
                         <span class="icon-bar"></span>
@@ -33,14 +33,13 @@
 
                     <span class="navbar-text pull-left"><img src="DSV.jpg" alt=""width="50" height="50"> </span>
 
-                    <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
+
 
                     @if(Route::currentRouteName()!='login')
                     <ul class="nav navbar-nav">
@@ -78,11 +77,11 @@
                         @endif
                     </ul>
                     @endif
-                    <!-- Right Side Of Navbar -->
+
                     <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
+
                         @guest
-                            <!-- <li><a href="{{ route('register') }}">Register</a></li> -->
+
                             @if(Route::currentRouteName()=='login' || Route::currentRouteName()=="")
                             <li><a href="{{ route('login') }}">Login</a></li>
 
@@ -115,6 +114,61 @@
                     </ul>
                 </div>
             </div>
+        </nav> -->
+
+        <nav class="navbar navbar-inverse">
+
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">SIIDLA</a>
+            </div>
+
+            <ul class="nav navbar-nav">
+
+                <li class="active">
+                  <a class="navbar-brand" href="{{ url('/entradas') }}">
+                    Entradas
+                    </a>
+                </li>
+
+                <li>
+                  <a class="navbar-brand" href="{{ url('/salidas') }}"> Salidas</a></li>
+                <li><a class="navbar-brand" href="{{ url('/numerosParte') }}">Numeros de parte</a></li>
+
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Historial
+                  <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a class="navbar-brand" href="{{ url('/entradas/show') }}">Historial de entradas</a></li>
+                    <li><a class="navbar-brand" href="{{ url('/salidas/show') }}">Historial de salidas</a></li>
+                  </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                        {{ Auth::user()->name }} <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
+                            @if(Auth::user()->isAdmin())
+                            <a href="{{ route('register') }}">Registrar usuarios</a>
+                            @endif
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+          </div>
+
         </nav>
     @section('mensajesBackEnd')
         @if(Session::has('Guardado'))
@@ -123,7 +177,7 @@
     @show
 
     @yield('content')
-    
+
     </div>
 
     @section('scripts')
@@ -139,8 +193,8 @@
     <!--  -->
     @show
 
-    
-    
+
+
     @section('scriptsDataTable')
     <!--Datatables, nesesario ponerlas en ese orden, -->
     <script src="{{ asset('js//bootstrap/datatables.js') }}"></script>
