@@ -116,6 +116,7 @@
             </div>
         </nav> -->
 
+
         <nav class="navbar navbar-inverse">
 
           <div class="container-fluid">
@@ -124,7 +125,7 @@
             </div>
 
             <ul class="nav navbar-nav">
-
+                @auth
                 <li class="active">
                   <a class="navbar-brand" href="{{ url('/entradas') }}">
                     Entradas
@@ -143,6 +144,7 @@
                     <li><a class="navbar-brand" href="{{ url('/salidas/show') }}">Historial de salidas</a></li>
                   </ul>
                 </li>
+
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
@@ -165,10 +167,14 @@
                         </li>
                     </ul>
                 </li>
-
+                @endauth
             </ul>
+            
+           
+            
+           
           </div>
-
+            
         </nav>
     @section('mensajesBackEnd')
         @if(Session::has('Guardado'))
