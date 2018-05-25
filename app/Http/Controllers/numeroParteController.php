@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Numeros_parte;
 use App\UnidadMedida;
+use App\Inventario;
+use App\Ubicacion;
 
 class numeroParteController extends Controller
 {
@@ -58,5 +60,37 @@ class numeroParteController extends Controller
         //$this->returnMessage('Guardado', , );
     }
 
+    public function cambioArea()
+    {
+        $ubicaciones =  new Ubicacion;
+        $ubicaciones = $ubicaciones->all();
+
+        if(Auth::user()->isAdmin())
+        {
+            $inventario = 
+            DB::table('inventarios')
+            ->join("numeros_partes", "numeros_partes.Numero", "=", "inventarios.gin" )
+            ->leftjoin('sucursales', "inventarios.id_sucursal", "=", "sucursales.id")
+            ->where('inventarios.cantidad', '>', '0')
+            ->select("inventarios.*", "numeros_partes.Descripcion" , "sucursales.id as id_sucursal", "sucursales.nombre as nombre_sucursal")
+            ->get();
+        
+        return view('numerosParte.CambioArea', compact('inventario', 'ubicaciones'));
+        }
+        else
+        {
+            
+            $inventario = 
+            DB::table('inventarios')
+            ->join("numeros_partes", "numeros_partes.Numero", "=", "inventarios.gin" )
+            ->leftjoin('sucursales', "inventarios.id_sucursal", "=", "sucursales.id")
+            ->where('inventarios.cantidad', '>', '0')
+            ->where('inventarios.id_sucursal', '=', Auth::User()->id_sucursal)
+            ->select("inventarios.*", "numeros_partes.Descripcion" , "sucursales.id as id_sucursal", "sucursales.nombre as nombre_sucursal")
+            ->get();
+        
+        return view('numerosParte.CambioArea', compact('inventario', 'ubicaciones'));
+        }
+    }
 
 }
