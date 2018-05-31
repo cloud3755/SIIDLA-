@@ -1,5 +1,10 @@
 @extends('layouts.app')
-
+@section('styles')
+@parent
+  <link href="{{ asset('css/bootstrap/bootstrap-select.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/bootstrap/bootstrap-select.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/bootstrap/bootstrap-select.css.map') }}" rel="stylesheet">
+@endsection
 @section('content')
 <div class="container">
     <div class="row">
@@ -43,33 +48,35 @@
                         </thead>
                         <tbody>
                             @foreach($inventario as $record)
-                            <tr class="salidaRow" data-idSucursal="{{$record->id_sucursal}}" data-idEntrada="{{$record->id_entrada}}" id="{{$record->id}}">
+                            <tr class="cambioAreaRow" data-idSucursal="{{$record->id_sucursal}}" data-idEntrada="{{$record->id_entrada}}" id="{{$record->id}}">
                                 <td class="gin">{{$record->gin}}</td>
                                 <td class="descripcion">{{$record->Descripcion}}</td>
                                 <td  class="sucursal">{{$record->nombre_sucursal}}</td>
                                 <td><input class="chkAplicar" type="checkbox"></td>
                                 <td>
-                                <select class="form-control areaSelect" data-area="{{$record->ubicacion}}">
-                                    
+                                <select class="form-control areaSelect" data-area="{{$record->ubicacion}}" data-live-search="true" data-width="100%">
+                        
                                 </select>
+                                <input hidden class="areaAnterior" type="text" value="{{$record->ubicacion}}">
                                 </td>
                             </tr>
                             @endforeach
+                        
+                        </tbody>
+                        </table>
                         <div id="areaTemplate" hidden>
                             <option value="0">Seleccione...</option>
                             @foreach($ubicaciones as $ubicacion)
-                                <option value="{{$ubicacion->Ubicacion}}">{{$ubicacion->Ubicacion}}</option>
+                            <option value="{{$ubicacion->Ubicacion}}">{{$ubicacion->Ubicacion}}</option>
                             @endforeach
                         </div>
-                        </tbody>
-                        </table>
                         </div>
                     </div>
                 </div>
             </div>
-            <form hidden id="form" method="POST" action="/salidas" }}>
-                {{ csrf_field() }}
-            <input type="text" id="datosSalida" name="datosSalida" /> 
+            <form hidden id="form" method="POST" action="/numerosParte/CambioArea">
+            {{ csrf_field() }}
+            <input type="text" id="datosCambioArea" name="datosCambioArea" /> 
             </form>
         <!--</div>-->
     </div>
@@ -77,6 +84,6 @@
 @endsection
 
 @section('scripts')
-  @parent
-
-  @endsection
+@parent
+<script src="{{ asset('js/numerosParte/cambioAreaApp.js') }}"></script>
+@endsection

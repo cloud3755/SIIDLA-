@@ -345,6 +345,7 @@ class ComposerStaticInit98e161a3d3f9c95fcec098152ccaa7a8
         'App\\Ubicacion' => __DIR__ . '/../..' . '/app/Ubicacion.php',
         'App\\UnidadMedida' => __DIR__ . '/../..' . '/app/UnidadMedida.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'App\\historialMovimientosNumeroParte' => __DIR__ . '/../..' . '/app/historialMovimientosNumeroParte.php',
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
         'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',

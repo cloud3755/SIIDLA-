@@ -85,16 +85,6 @@
 </div>
 @endsection
 
-@section('scripts')
-  @parent
-  <script src="{{ asset('js/app.js') }}"></script>
- 
-  <script src="{{ asset('js/salidas/appSalidas.js') }}"></script>
-  <script src="{{ asset('js//bootstrap/bootstrap-select.min.js') }}"></script>
-  <script src="{{ asset('js//bootstrap/bootstrap-select.js') }}"></script>
-  
-  @endsection
-
 <!-- Modal Check List-->
 <div class="modal fade" id="ModalCheckList" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -287,3 +277,14 @@
     </div>
   </div>
 </div>
+
+
+@section('scripts')
+  @parent
+  <script src="{{ asset('js/app.js') }}"></script>
+ 
+  <script src="{{ asset('js/salidas/appSalidas.js') }}"></script>
+  <script src="{{ asset('js//bootstrap/bootstrap-select.min.js') }}"></script>
+  <script src="{{ asset('js//bootstrap/bootstrap-select.js') }}"></script>
+  
+  @endsection

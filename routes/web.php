@@ -73,9 +73,13 @@ Route::get('/entradas/show/{id}', 'EntradasController@showEntradasDetalle')->nam
 
 Route::get('/numerosParte', 'numeroParteController@numerosParte')->name('numerosParte');
 Route::post('/numerosParte', 'numeroParteController@nuevo')->name('numerosPartePost');
+Route::get('/numerosParte/CambioArea', 'numeroParteController@cambioArea')->name('cambioArea');
+Route::post('/numerosParte/CambioArea', 'numeroParteController@nuevoCambioArea')->name('numerosPartePost');
 
 Route::get('/unidadMedida', 'numeroParteController@unidadMedida')->name('unidadMedida');
 Route::post('/unidadMedida', 'numeroParteController@nuevaUnidadMedida')->name('unidadMedidaPost');
+
+
 
     }
 );

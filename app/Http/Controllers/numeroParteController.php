@@ -8,6 +8,9 @@ use App\Numeros_parte;
 use App\UnidadMedida;
 use App\Inventario;
 use App\Ubicacion;
+use App\historialMovimientosNumeroParte;
+use Auth;
+use Illuminate\Support\Facades\DB;
 
 class numeroParteController extends Controller
 {
@@ -91,6 +94,32 @@ class numeroParteController extends Controller
         
         return view('numerosParte.CambioArea', compact('inventario', 'ubicaciones'));
         }
+    }
+
+    public function nuevoCambioArea(Request $request)
+    {
+        $cambiosArea = \json_decode($request->datosCambioArea);
+        $fechaHora = date("Y-m-d H:i:s");
+        //dd($cambiosArea);
+        foreach($cambiosArea as $cambios)
+        {
+            $numeroParte = $cambios->gin;
+            $areaAnterior = $cambios->areaAnterior;
+            $nuevaArea = $cambios->nuevaArea;
+            Inventario::where('gin', $numeroParte)
+            ->update(['ubicacion' => $nuevaArea]);
+            $historial = new historialMovimientosNumeroParte();
+            $historial->numero_parte = $numeroParte;
+            $historial->id_usuario = Auth::user()->id;
+            $historial->area_anterior = $areaAnterior;
+            $historial->nueva_area = $nuevaArea;
+            $historial->fechaMovimiento = $fechaHora;
+            $historial->save();
+            $historial = null;
+        }
+
+        \Session::flash('Guardado',"Se Cambiaron las areas correctamente");
+        return redirect()->route("cambioArea"); 
     }
 
 }
