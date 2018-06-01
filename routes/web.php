@@ -75,6 +75,10 @@ Route::get('/numerosParte', 'numeroParteController@numerosParte')->name('numeros
 Route::post('/numerosParte', 'numeroParteController@nuevo')->name('numerosPartePost');
 Route::get('/numerosParte/CambioArea', 'numeroParteController@cambioArea')->name('cambioArea');
 Route::post('/numerosParte/CambioArea', 'numeroParteController@nuevoCambioArea')->name('numerosPartePost');
+Route::get('/numerosParte/CambioArea/historial/resumen', 'numeroParteController@showNumerosParteHistorialResumen');
+Route::get('/numerosParte/CambioArea/historial/{numeroParte}', 'numeroParteController@showNumeroParteHistorial')->name('showNumeroParteHistorial');
+
+
 
 Route::get('/unidadMedida', 'numeroParteController@unidadMedida')->name('unidadMedida');
 Route::post('/unidadMedida', 'numeroParteController@nuevaUnidadMedida')->name('unidadMedidaPost');

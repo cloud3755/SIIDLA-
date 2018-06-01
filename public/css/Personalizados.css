@@ -1,7 +1,4 @@
-body{
-  /* background-image: url("/fondo.jpg");
-  background-attachment: fixed; */
-}
+
 
 .checkListTitle
 {
@@ -15,4 +12,9 @@ body{
   background: #CCC
 }
 .checkList tr:nth-child(odd) {background: #FFF}
+
+.navbar-brand:hover
+{
+  color : #0000a0 !important;
+}
 

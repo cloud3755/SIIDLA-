@@ -36,7 +36,7 @@
 
                     <div class="panel-body">
                         <div class="table-responsive">
-                        <table class="table">
+                        <table class="table" id="dataTable">
                         <thead>
                             <tr>
                             <th>GIN</th>

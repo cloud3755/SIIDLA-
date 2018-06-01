@@ -134,7 +134,15 @@
 
                 <li>
                   <a class="navbar-brand" href="{{ url('/salidas') }}"> Salidas</a></li>
-                <li><a class="navbar-brand" href="{{ url('/numerosParte') }}">Numeros de parte</a></li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Numeros de parte
+                  <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a class="navbar-brand" href="{{ url('/numerosParte') }}">Numeros de parte</a></li>
+                    <li><a class="navbar-brand" href="{{ url('/unidadMedida') }}">Unidades de medida</a></li>
+                    <li><a class="navbar-brand" href="{{ url('/numerosParte/CambioArea') }}">Cambio de area</a></li>
+                </ul>
+                </li>
 
                 <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Historial
@@ -142,6 +150,7 @@
                   <ul class="dropdown-menu">
                     <li><a class="navbar-brand" href="{{ url('/entradas/show') }}">Historial de entradas</a></li>
                     <li><a class="navbar-brand" href="{{ url('/salidas/show') }}">Historial de salidas</a></li>
+                    <li><a class="navbar-brand" href="{{ url('/numerosParte/CambioArea/historial/resumen') }}">Historial de movimientos de area</a></li>
                   </ul>
                 </li>
 

@@ -100,7 +100,8 @@ class numeroParteController extends Controller
     {
         $cambiosArea = \json_decode($request->datosCambioArea);
         $fechaHora = date("Y-m-d H:i:s");
-        //dd($cambiosArea);
+        $count = count($cambiosArea);
+        //dd($count);
         foreach($cambiosArea as $cambios)
         {
             $numeroParte = $cambios->gin;
@@ -118,8 +119,78 @@ class numeroParteController extends Controller
             $historial = null;
         }
 
-        \Session::flash('Guardado',"Se Cambiaron las areas correctamente");
+        \Session::flash('Guardado',"Se Cambiaron ".$count." areas correctamente");
         return redirect()->route("cambioArea"); 
+    }
+
+    public function showNumerosParteHistorialResumen()
+    {
+        if(Auth::user()->isAdmin())
+        {
+            /*
+            $inventario = 
+            DB::table('inventarios')
+            ->join("numeros_partes", "numeros_partes.Numero as num", "=", "inventarios.gin" )
+            ->leftjoin('sucursales', "inventarios.id_sucursal", "=", "sucursales.id")
+            ->leftjoin(
+                DB::raw('( SELECT 
+                numero_parte,
+                id_usuario, 
+                area_anterior,
+                nueva_area, 
+                fechaMovimiento 
+                FROM historial_movimientos_numero_partes    
+                WHERE num = historial_movimientos_numero_partes.numero_parte  LIMIT 1) historialParte '),
+
+            function($join)
+            {
+                $join->on('inventarios.gin', '=', 'historialParte.numero_parte');
+            }
+
+            )
+            ->select(
+                "inventarios.*", "numeros_partes.Descripcion" , "sucursales.id as id_sucursal", "sucursales.nombre as nombre_sucursal",
+                "historialParte.*"
+            )
+            ->toSql();
+            dd($inventario);
+        
+        return view('numerosParte.CambioArea', compact('inventario', 'ubicaciones'));
+        */
+
+         $inventario = 
+            DB::table('inventarios')
+            ->join("numeros_partes", "numeros_partes.Numero", "=", "inventarios.gin" )
+            ->select("inventarios.*", "numeros_partes.Descripcion")
+            ->get();
+        
+        return view('numerosParte.CambioAreaHistorialResumen', compact('inventario'));
+        }
+        else
+        {
+            
+            $inventario = 
+            DB::table('inventarios')
+            ->join("numeros_partes", "numeros_partes.Numero", "=", "inventarios.gin" )
+            ->leftjoin('sucursales', "inventarios.id_sucursal", "=", "sucursales.id")
+            ->where('inventarios.cantidad', '>', '0')
+            ->where('inventarios.id_sucursal', '=', Auth::User()->id_sucursal)
+            ->select("inventarios.*", "numeros_partes.Descripcion" , "sucursales.id as id_sucursal", "sucursales.nombre as nombre_sucursal")
+            ->get();
+        
+        return view('numerosParte.CambioArea', compact('inventario', 'ubicaciones'));
+        }
+    }
+
+    public function showNumeroParteHistorial($numeroParte)
+    {
+        $numerosParte = 
+        DB::table('historial_movimientos_numero_partes as hist')
+        ->join('users', "hist.id_usuario", "=", "users.id")
+        ->where("hist.numero_parte", "=", $numeroParte)
+        ->select("hist.*", "users.name as usuario", "users.id as id_usuario")
+        ->get();
+        return view('numerosParte.CambioAreaHistorialNumeroParte', compact('numerosParte'));
     }
 
 }
