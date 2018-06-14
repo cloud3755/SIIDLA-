@@ -20,10 +20,10 @@ class CreateInventariosTable extends Migration
           $table->string('lote', 20);
           $table->integer('cantidad');
           $table->date('fecha_caducidad');
-          $table->dateTime('fechaHora_entrada');
+          $table->dateTime('fechaHora_entrada');//Si es cambio de area, se registra aqui
           $table->integer('id_usuario');
           $table->integer('id_sucursal');
-          $table->integer('id_entrada');
+          $table->integer('id_entrada')->default(0);//Si es cambio de area, se registra 0
           $table->timestamps();
         });
     }

@@ -15,11 +15,11 @@ class CreateHistorialMovimientosNumeroPartesTable extends Migration
     {
         Schema::create('historial_movimientos_numero_partes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('numero_parte');
+            $table->integer('gin');//Numero
             $table->integer('id_usuario');
             $table->string('area_anterior');
             $table->string('nueva_area');
-            $table->date('fechaMovimiento');
+            $table->date('fecha_movimiento');
             $table->timestamps();
         });
     }
