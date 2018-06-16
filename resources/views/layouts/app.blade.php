@@ -19,103 +19,6 @@
     @show
 </head>
 <body>
-    <!-- <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <di v class="navbar-header">
-
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <span class="navbar-text pull-left"><img src="DSV.jpg" alt=""width="50" height="50"> </span>
-
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-
-
-                    @if(Route::currentRouteName()!='login')
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                        <li> <a class="navbar-brand" href="{{ url('/entradas') }}">
-                            Entradas
-                            </a>
-                        </li>
-                        <li>
-                          <a class="navbar-brand" href="{{ url('/salidas') }}">
-                              Salidas
-                          </a>
-                        </li>
-                        @if(Auth::user()->isAdmin())
-                         <li>
-                          <a class="navbar-brand" href="{{ url('/numerosParte') }}">
-                              Numeros de parte
-                          </a>
-                        </li>
-                        <li>
-                          <a class="navbar-brand" href="{{ url('/unidadMedida') }}">
-                              Unidades de medida
-                          </a>
-                        </li>
-                        <li>
-                          <a class="navbar-brand" href="{{ url('/entradas/show') }}">
-                              Historial de entradas
-                          </a>
-                        </li>
-                        <li>
-                          <a class="navbar-brand" href="{{ url('/salidas/show') }}">
-                              Historial de salidas
-                          </a>
-                        </li>
-                        @endif
-                    </ul>
-                    @endif
-
-                    <ul class="nav navbar-nav navbar-right">
-
-                        @guest
-
-                            @if(Route::currentRouteName()=='login' || Route::currentRouteName()=="")
-                            <li><a href="{{ route('login') }}">Login</a></li>
-
-                            @else
-                            <li><a href="{{ route('login') }}">Logout</a></li>
-                            @endif
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-                                        @if(Auth::user()->isAdmin())
-                                        <a href="{{ route('register') }}">Registrar usuarios</a>
-                                        @endif
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav> -->
-
 
         <nav class="navbar navbar-inverse">
 
@@ -154,6 +57,13 @@
                   </ul>
                 </li>
 
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">PDO
+                  <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a class="navbar-brand" href="{{ url('/cargar/pdo') }}">Subir pdo</a></li>
+                  </ul>
+                </li>
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
@@ -178,12 +88,12 @@
                 </li>
                 @endauth
             </ul>
-            
-           
-            
-           
+
+
+
+
           </div>
-            
+
         </nav>
     @section('mensajesBackEnd')
         @if(Session::has('Guardado'))
