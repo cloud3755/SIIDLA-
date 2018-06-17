@@ -14,10 +14,18 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 
 class EntradasController extends Controller
-{   
+{
     public function __construct()
     {
         $this->middleware('rol:any');
+    }
+
+    public function subirarchivo(Request $request)
+    {
+      $file1 = $request->archivo;
+
+      \Storage::disk('Pod')->put('Pod',  \File::get($file1));
+      return view('entradas.entradas');
     }
 
     public function entradas()
@@ -31,8 +39,8 @@ class EntradasController extends Controller
 
         $sucursales = new Sucursal;
         $sucursales = $sucursales->all();
-        
-           
+
+
 
         return view('entradas.entradas',compact('ubica','num', 'sucursales'));
     }
@@ -41,7 +49,7 @@ class EntradasController extends Controller
         $fechaHora = date("Y-m-d H:i:s");
         $entradas = \json_decode($request->datosEntrada);
         $id_sucursal = $request->id_sucursal;
-       
+
         $Entrada = new Entrada();
         $Entrada->id_usuario = Auth::user()->id;
         $Entrada->id_sucursal = Auth::user()->isAdmin() ? $id_sucursal : Auth::user()->id_sucursal;
@@ -72,7 +80,7 @@ class EntradasController extends Controller
         }
         //var_dump($var);
         \Session::flash('Guardado','Se guardaron correctamente las entradas');
-        return redirect()->route("entradas");   
+        return redirect()->route("entradas");
     }
 
     public function showEntradas()
@@ -83,7 +91,7 @@ class EntradasController extends Controller
                     ->select("entradas.id" , "entradas.fecha_entrada", "users.name as usuario", "sucursales.nombre as sucursal" )
                     ->orderBy('entradas.fecha_entrada', 'desc')
                     ->get();
-        
+
         return view("entradas.mostrarEntradas", compact('entradas'));
     }
 

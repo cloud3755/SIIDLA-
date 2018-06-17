@@ -56,6 +56,8 @@ Route::group( ['middleware' => ['auth', 'rol:any']],
         Route::get('/salidas', 'SalidasController@salidas')->name('salidas');
         Route::post('/salidas', 'SalidasController@nuevaSalida')->name('salidasPost');
 
+        Route::post('/subirarchivo', 'EntradasController@subirarchivo');
+
     }
 );
 
@@ -83,6 +85,8 @@ Route::get('/numerosParte/CambioArea/historial/{numeroParte}', 'numeroParteContr
 Route::get('/unidadMedida', 'numeroParteController@unidadMedida')->name('unidadMedida');
 Route::post('/unidadMedida', 'numeroParteController@nuevaUnidadMedida')->name('unidadMedidaPost');
 
+Route::post('/subirarchivo', 'EntradasController@subirarchivo');
+
 
 
     }
@@ -99,4 +103,3 @@ Route::post('/login', [
 
 
 */
-

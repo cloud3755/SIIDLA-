@@ -79,16 +79,16 @@
                           </div>
                         </div>
                       </div>
-                      
+
                       <br>
                       <div class="row">
                         <div class="col-xs-4">
 
                           <div class="input-group">
-                                 
+
                             <label class="sr-only" for="GIN">Site</label>
                             <div class="input-group-addon">Site</div>
-                                     
+
                             <select {{(Auth::user()->id_rol ==1 || Auth::user()->id_rol ==2) ? ""  : "disabled"}}  class="form-control" id="sucursal" name="sucursal" required>
                               @foreach($sucursales as $sucursal)
                               @if(Auth::user()->id_sucursal==$sucursal->id)
@@ -98,20 +98,20 @@
                               @endif
                               @endforeach
                             </select>
-                            
-                    
+
+
                           </div>
 
                         </div>
                       </div>
 
-                      
+
                       <br>
                       <div class="text-center">
                         <button type="button" id="agregarEntrada" class="btn btn-primary">Agregar</button>
                         <button class="btn btn-danger">Limpiar datos</button>
                       </div>
-                   
+
                     </form>
 
                 </div>
@@ -141,12 +141,12 @@
                           </tr>
                         </thead>
                         <tbody>
-                        
+
                         </tbody>
                       </table>
                     <form hidden  id="form" method="POST" action="/entradas" }}>
                        {{ csrf_field() }}
-                      <input type="text" id="datosEntrada" name="datosEntrada" /> 
+                      <input type="text" id="datosEntrada" name="datosEntrada" />
                       <input type="number" id="id_sucursal" name="id_sucursal" />
                     </form>
                     </div>
@@ -156,7 +156,23 @@
     </div>
 </div>
 
-  
+<!-- <form class="" action="/subirarchivo" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+  <div class="form-group form-group-lg">
+  <h2><label for="Usuario" class="control-label col-md-12">(*) Archivo:</label></h2>
+  <div class="col-md-6 col-sm-9">
+    <input class="form-control input-lg" id="archivo" type="file" placeholder="Elige el archivo" name="archivo" required>
+  </div>
+</div>
+
+<div class="modal-footer">
+<button type="submit" class="btnobjetivo" id="btnobjetivo" style="font-family: Arial;">Subir Documento</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal" id="btnCloseUpload">Cerrar</button>
+</div>
+
+</form> -->
+
+
 
 
 @endsection
@@ -164,5 +180,4 @@
 @parent
 <script src="{{ asset('js/utils/date.js') }}"></script>
 <script src="{{ asset('js/entradas/appEntradas.js') }}"></script>
-@endsection 
-
+@endsection

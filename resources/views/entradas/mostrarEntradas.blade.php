@@ -20,7 +20,7 @@
                       <table class="table" id="tableEntrada">
                         <thead>
                           <tr>
-                            <th>ID</th>
+                            <th>ENTRADA</th>
                             <th>Fecha de entrada</th>
                             <th>Usuario</th>
                             <th>sucursal</th>
@@ -39,7 +39,7 @@
                         @endforeach
                         </tbody>
                       </table>
-                   
+
                     </div>
                 </div>
             </div>
@@ -49,6 +49,6 @@
 @section('scripts')
   @parent
   <script src="{{ asset('js/app.js') }}"></script>
-  
+
   @endsection
 @endsection
