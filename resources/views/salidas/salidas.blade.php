@@ -67,7 +67,7 @@
                                 <td class="fecha_caducidad" >{{$record->fecha_caducidad}}</td>
                                 <td  class="sucursal">{{$record->nombre_sucursal}}</td>
                                 <td><input class="chkAplicar" type="checkbox"></td>
-                                <td><input class="Cantidad" type="number" max="{{$record->cantidad}}" min="1" value="{{$record->cantidad}}" /></td>
+                                <td><input class="Cantidad overCero" type="number" max="{{$record->cantidad}}" min="1" value="{{$record->cantidad}}" /></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -281,8 +281,8 @@
 
 @section('scripts')
   @parent
-  <script src="{{ asset('js/app.js') }}"></script>
- 
+
+ <script src="{{ asset('js/utils/inputNumberUtil.js') }}"></script>
   <script src="{{ asset('js/salidas/appSalidas.js') }}"></script>
   <script src="{{ asset('js//bootstrap/bootstrap-select.min.js') }}"></script>
   <script src="{{ asset('js//bootstrap/bootstrap-select.js') }}"></script>

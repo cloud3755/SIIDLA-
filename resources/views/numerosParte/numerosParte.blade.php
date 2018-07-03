@@ -66,7 +66,7 @@
                             <select class="form-control" id="unidadMedida" name="unidadMedida">
                               <option value="0">Seleccione...</option>
                               @foreach($Unidades as $unidad)
-                              <option value="{{$unidad->id}}">{{$unidad->Abreviatura}} - {{$unidad->Nombre}}</option>
+                              <option value="{{$unidad->id}}">{{$unidad->abreviatura}} - {{$unidad->nombre}}</option>
                               @endforeach
                             </select>
                           </div>
@@ -99,9 +99,9 @@
                         <tbody>
                         @foreach($numerosParte as $parte)
                             <tr>
-                                <td>{{$parte->Numero}}</td>
-                                <td>{{$parte->Descripcion}}</td>
-                                <td>{{$parte->Area}}</td>
+                                <td>{{$parte->gin}}</td>
+                                <td>{{$parte->descripcion}}</td>
+                                <td>{{$parte->area}}</td>
                             </tr>
                         @endforeach
                         </tbody>

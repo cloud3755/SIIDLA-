@@ -29,11 +29,11 @@
                         <tbody>
                         @foreach($numerosParte as $numero)
                         <tr>
-                            <td>{{$numero->numero_parte}}</td>
+                            <td>{{$numero->gin}}</td>
                             <td>{{$numero->id_usuario}} - {{$numero->usuario}} </td>
                             <td>{{$numero->area_anterior}}</td>
                             <td>{{$numero->nueva_area}}</td>
-                            <td>{{$numero->fechaMovimiento}}</td>
+                            <td>{{$numero->fecha_movimiento}}</td>
                         </tr>
                         @endforeach
                         </tbody>

@@ -32,9 +32,9 @@ class numeroParteController extends Controller
     public function nuevo(Request $request)
     {
         $nuevaParte =  new Numeros_parte();
-        $nuevaParte->Numero = $request->Numero; 
-        $nuevaParte->Descripcion = $request->Descripcion; 
-        $nuevaParte->Area = $request->Area; 
+        $nuevaParte->gin = $request->Numero; 
+        $nuevaParte->descripcion = $request->Descripcion; 
+        $nuevaParte->area = $request->Area; 
         $nuevaParte->id_unidad_medida = $request->unidadMedida; 
         $nuevaParte->id_sucursal = 1; 
 
@@ -54,9 +54,9 @@ class numeroParteController extends Controller
     public function nuevaUnidadMedida(Request $request)
     {
         $unidad = new UnidadMedida();
-        $unidad->Nombre =       $request->Nombre;
-        $unidad->Descripcion =  $request->Descripcion;
-        $unidad->Abreviatura =  $request->Abreviatura;
+        $unidad->nombre =       $request->Nombre;
+        $unidad->descripcion =  $request->Descripcion;
+        $unidad->abreviatura =  $request->Abreviatura;
         $unidad->save();
          \Session::flash('Guardado',"Se guardo la unidad correctamente");
         return redirect()->route("unidadMedida"); 
@@ -72,7 +72,7 @@ class numeroParteController extends Controller
         {
             $inventario = 
             DB::table('inventarios')
-            ->join("numeros_partes", "numeros_partes.Numero", "=", "inventarios.gin" )
+            ->join("numeros_partes", "numeros_partes.gin", "=", "inventarios.gin" )
             ->leftjoin('sucursales', "inventarios.id_sucursal", "=", "sucursales.id")
             ->where('inventarios.cantidad', '>', '0')
             ->select("inventarios.*", "numeros_partes.Descripcion" , "sucursales.id as id_sucursal", "sucursales.nombre as nombre_sucursal")
@@ -85,7 +85,7 @@ class numeroParteController extends Controller
             
             $inventario = 
             DB::table('inventarios')
-            ->join("numeros_partes", "numeros_partes.Numero", "=", "inventarios.gin" )
+            ->join("numeros_partes", "numeros_partes.gin", "=", "inventarios.gin" )
             ->leftjoin('sucursales', "inventarios.id_sucursal", "=", "sucursales.id")
             ->where('inventarios.cantidad', '>', '0')
             ->where('inventarios.id_sucursal', '=', Auth::User()->id_sucursal)
@@ -104,17 +104,41 @@ class numeroParteController extends Controller
         //dd($count);
         foreach($cambiosArea as $cambios)
         {
-            $numeroParte = $cambios->gin;
+            $inventario             = new Inventario();
+            $gin = $cambios->gin;
             $areaAnterior = $cambios->areaAnterior;
             $nuevaArea = $cambios->nuevaArea;
-            Inventario::where('gin', $numeroParte)
-            ->update(['ubicacion' => $nuevaArea]);
+            $cantidad = $cambios->cantidad;
+            $id_sucursal = $cambios->id_sucursal;
+            if($inventario->existsByGinArea($gin, $nuevaArea))
+            {
+                $inventario->updateAddStockByGinArea($gin, $nuevaArea, $cantidad);
+            }
+            else
+            {
+                $lote = $cambios->lote;
+                $fecha_caducidad = $cambios->fecha_caducidad;
+                $fechaHora_entrada = $cambios->fecha_caducidad;
+                $inventario             = new Inventario();
+            
+                $inventario->gin        = $gin;
+                $inventario->ubicacion  = $nuevaArea;
+                $inventario->lote       = $lote;
+                $inventario->cantidad   = $cantidad;
+                $inventario->fecha_caducidad = $fecha_caducidad;
+                $inventario->fechaHora_entrada  = $fechaHora_entrada;
+                $inventario->id_usuario  = Auth::user()->id;
+                $inventario->id_sucursal  = $id_sucursal;
+                
+                $inventario->save();
+                $inventario = null;
+            }
             $historial = new historialMovimientosNumeroParte();
-            $historial->numero_parte = $numeroParte;
+            $historial->gin = $gin;
             $historial->id_usuario = Auth::user()->id;
             $historial->area_anterior = $areaAnterior;
             $historial->nueva_area = $nuevaArea;
-            $historial->fechaMovimiento = $fechaHora;
+            $historial->fecha_movimiento = $fechaHora;
             $historial->save();
             $historial = null;
         }
@@ -160,7 +184,7 @@ class numeroParteController extends Controller
 
          $inventario = 
             DB::table('inventarios')
-            ->join("numeros_partes", "numeros_partes.Numero", "=", "inventarios.gin" )
+            ->join("numeros_partes", "numeros_partes.gin", "=", "inventarios.gin" )
             ->select("inventarios.*", "numeros_partes.Descripcion")
             ->get();
         
@@ -171,7 +195,7 @@ class numeroParteController extends Controller
             
             $inventario = 
             DB::table('inventarios')
-            ->join("numeros_partes", "numeros_partes.Numero", "=", "inventarios.gin" )
+            ->join("numeros_partes", "numeros_partes.gin", "=", "inventarios.gin" )
             ->leftjoin('sucursales', "inventarios.id_sucursal", "=", "sucursales.id")
             ->where('inventarios.cantidad', '>', '0')
             ->where('inventarios.id_sucursal', '=', Auth::User()->id_sucursal)
@@ -187,7 +211,7 @@ class numeroParteController extends Controller
         $numerosParte = 
         DB::table('historial_movimientos_numero_partes as hist')
         ->join('users', "hist.id_usuario", "=", "users.id")
-        ->where("hist.numero_parte", "=", $numeroParte)
+        ->where("hist.gin", "=", $numeroParte)
         ->select("hist.*", "users.name as usuario", "users.id as id_usuario")
         ->get();
         return view('numerosParte.CambioAreaHistorialNumeroParte', compact('numerosParte'));

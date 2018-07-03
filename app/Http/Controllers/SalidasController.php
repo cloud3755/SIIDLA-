@@ -18,7 +18,7 @@ class SalidasController extends Controller
         {
             $inventario = 
             DB::table('inventarios')
-            ->join("numeros_partes", "numeros_partes.Numero", "=", "inventarios.gin" )
+            ->join("numeros_partes", "numeros_partes.gin", "=", "inventarios.gin" )
             ->leftjoin('sucursales', "inventarios.id_sucursal", "=", "sucursales.id")
             ->where('inventarios.cantidad', '>', '0')
             ->select("inventarios.*", "numeros_partes.Descripcion" , "sucursales.id as id_sucursal", "sucursales.nombre as nombre_sucursal")
@@ -31,7 +31,7 @@ class SalidasController extends Controller
             
             $inventario = 
             DB::table('inventarios')
-            ->join("numeros_partes", "numeros_partes.Numero", "=", "inventarios.gin" )
+            ->join("numeros_partes", "numeros_partes.gin", "=", "inventarios.gin" )
             ->leftjoin('sucursales', "inventarios.id_sucursal", "=", "sucursales.id")
             ->where('inventarios.cantidad', '>', '0')
             ->where('inventarios.id_sucursal', '=', Auth::User()->id_sucursal)
@@ -102,9 +102,10 @@ class SalidasController extends Controller
       //  dd($entradaMaster);
         $salidaDetalle = DB::table('salidas')
                     ->join('salida_detalles', "salidas.id", "=", "salida_detalles.id_salida")
+                    ->join('numeros_partes', "salida_detalles.gin", "=", "numeros_partes.gin")
                     //->join('entradas', "entradas.id", "=", "salidas.id_entrada_relacionada")
                     ->where("salidas.id", "=" , $id)
-                    ->select("salida_detalles.*")
+                    ->select("salida_detalles.*", "numeros_partes.descripcion as descripcion")
                     ->get();
         return view("salidas.mostrarSalidasDetalle", compact(['salidaMaster','salidaDetalle' ]));
     }

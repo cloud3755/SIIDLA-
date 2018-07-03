@@ -80,8 +80,8 @@
                         @foreach($Unidades as $Unidad)
                             <tr>
                                 <td>{{$Unidad->id}}</td>
-                                <td>{{$Unidad->Nombre}}</td>
-                                <td>{{$Unidad->Descripcion}}</td>
+                                <td>{{$Unidad->nombre}}</td>
+                                <td>{{$Unidad->descripcion}}</td>
                                 <td>{{$Unidad->abreviatura}}</td>
                             </tr>
                         @endforeach

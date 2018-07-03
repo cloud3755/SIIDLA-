@@ -107,9 +107,10 @@ class EntradasController extends Controller
       //  dd($entradaMaster);
         $entradaDetalle = DB::table('entradas')
                     ->join('entrada_detalles', "entradas.id", "=", "entrada_detalles.id_entrada")
+                    ->join('numeros_partes', "entrada_detalles.gin", "=", "numeros_partes.gin")
                     ->leftjoin('sucursales', "entradas.id_sucursal", "=", "sucursales.id")
                     ->where("entradas.id", "=" , $id)
-                    ->select("entrada_detalles.*")
+                    ->select("entrada_detalles.*", "numeros_partes.descripcion as descripcion")
                     ->get();
         return view("entradas.mostrarEntradasDetalle", compact(['entradaMaster','entradaDetalle' ]));
     }

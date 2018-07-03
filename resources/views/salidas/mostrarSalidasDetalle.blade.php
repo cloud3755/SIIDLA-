@@ -64,6 +64,7 @@
                         <thead>
                           <tr>
                             <th>gin</th>
+                            <th>descripci&oacute;n</th>
                             <th>lote</th>
                             <th>ubicacion</th>
                             <th>cantidad</th>
@@ -74,6 +75,7 @@
                         @foreach($salidaDetalle as $detalle)
                         <tr>
                           <td>{{$detalle->gin}}</td>
+                          <td>{{$detalle->descripcion}}</td>
                           <td>{{$detalle->lote}}</td>
                           <td>{{$detalle->ubicacion}}</td>
                           <td>{{$detalle->cantidad}}</td>

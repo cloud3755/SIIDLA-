@@ -31,7 +31,7 @@
                             <div class="input-group-addon">GIN</div>
                             <select class="form-control selectpicker" id="ginsel" name="gin" data-live-search="true" data-width="100%" required>
                               @foreach($num as $numeros)
-                              <option data-descripcion="{{$numeros->Descripcion}}" value="{{$numeros->Numero}}">{{$numeros->Numero}}</option>
+                              <option data-descripcion="{{$numeros->descripcion}}" value="{{$numeros->gin}}">{{$numeros->gin}} - {{$numeros->descripcion}}</option>
                               @endforeach
                             </select>
                           </div>
@@ -53,7 +53,7 @@
                             <div class="input-group-addon">Ubicacion</div>
                             <select class="form-control selectpicker" id="ubicacionsel" data-live-search="true" data-width="100%" name="ubicacion">
                               @foreach ($ubica as $ubicacion)
-                              <option value="{{$ubicacion->Ubicacion}}">{{$ubicacion->Ubicacion}}</option>
+                              <option value="{{$ubicacion->ubicacion}}">{{$ubicacion->ubicacion}}</option>
                               @endforeach
                             </select>
                           </div>
@@ -67,7 +67,7 @@
                           <div class="input-group">
                             <label class="sr-only" for="cantidad">Cantidad</label>
                             <div class="input-group-addon">Cantidad</div>
-                            <input type="text" class="form-control" id="cantidad" placeholder="Cantidad">
+                            <input type="number" min="0" class="form-control overCero" id="cantidad" placeholder="Cantidad">
                           </div>
                         </div>
 
@@ -179,5 +179,6 @@
 @section('scripts')
 @parent
 <script src="{{ asset('js/utils/date.js') }}"></script>
+<script src="{{ asset('js/utils/inputNumberUtil.js') }}"></script>
 <script src="{{ asset('js/entradas/appEntradas.js') }}"></script>
 @endsection

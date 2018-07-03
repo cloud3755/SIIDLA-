@@ -49,7 +49,7 @@ function agregarRegistro()
         '<tr class="trGin" id="'+gin+'">'+
             '<td>'+gin+'</td>'+
             '<td>'+descripcion+'</td>'+
-            '<td ><input class="Cantidad" type="number" value="'+cantidad+'" /></td>'+
+            '<td ><input class="Cantidad overCero" type="number" value="'+cantidad+'" /></td>'+
             '<td>'+lote+'</td>'+
             '<td>'+ubicacion+'</td>'+
             '<td>'+fecha+'</td>'+
