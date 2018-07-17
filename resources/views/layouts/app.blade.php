@@ -99,6 +99,9 @@
         @if(Session::has('Guardado'))
             <div class="alert alert-success"><span></span><em> {!! session('Guardado') !!}</em></div>
         @endif
+        @if(Session::has('Warning'))
+            <div class="alert alert-warning"><span></span><em> {!! session('Warning') !!}</em></div>
+        @endif
     @show
 
     @yield('content')
@@ -107,10 +110,18 @@
 
     @section('scripts')
     <script src="{{ asset('js/bootstrap/popper.js') }}"></script>
-
     <script src="{{ asset('js/jquery-3.3.1.js') }}"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.js') }}"></script>
+    <!--Datatables, nesesario ponerlas en ese orden, -->
+    <script src="{{ asset('js//bootstrap/datatables.js') }}"></script>
+    <script src="{{ asset('js/utils/datatable.js') }}"></script>
+    <!--  -->
     @show
+
+    @section('scriptsDataTable')
+    
+    @show
+
     @section('scriptsSelect')
     <!--Script select 2 -->
         <script src="{{ asset('js//bootstrap/bootstrap-select.min.js') }}"></script>
@@ -120,11 +131,6 @@
 
 
 
-    @section('scriptsDataTable')
-    <!--Datatables, nesesario ponerlas en ese orden, -->
-    <script src="{{ asset('js//bootstrap/datatables.js') }}"></script>
-    <script src="{{ asset('js/utils/datatable.js') }}"></script>
-    <!--  -->
-    @show
+    
 </body>
 </html>

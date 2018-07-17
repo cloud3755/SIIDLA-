@@ -17,7 +17,7 @@ class CreateUbicacionsTable extends Migration
           $table->increments('id');
           $table->string('ubicacion',10);
           $table->string('descripcion');
-          $table->integer('capacidad');
+          $table->integer('capacidad')->default(0);
           $table->timestamps();
         });
     }

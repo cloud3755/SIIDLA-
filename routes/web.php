@@ -58,6 +58,10 @@ Route::group( ['middleware' => ['auth', 'rol:any']],
 
         Route::post('/subirarchivo', 'EntradasController@subirarchivo');
 
+        Route::get('/ubicaciones', 'ubicacionesController@ubicaciones')->name("ubicaciones");
+        Route::get('/getubicaciones', 'ubicacionesController@getJsonUbicaciones')->name("getubicaciones");
+        Route::post('/ubicaciones', 'ubicacionesController@nuevaUbicacion');
+
     }
 );
 
@@ -86,8 +90,6 @@ Route::get('/unidadMedida', 'numeroParteController@unidadMedida')->name('unidadM
 Route::post('/unidadMedida', 'numeroParteController@nuevaUnidadMedida')->name('unidadMedidaPost');
 
 Route::post('/subirarchivo', 'EntradasController@subirarchivo');
-
-
 
     }
 );
