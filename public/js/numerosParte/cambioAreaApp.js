@@ -4,6 +4,8 @@ $(function(){
 
 });
 
+thedataTables();
+
 function  setAreas()
 {
     var areas = $("#areaTemplate").html();

@@ -7,7 +7,7 @@ $(function(){
     $('#printCheckList').on('click', PrintCheckList)
 });
 
-
+thedataTables();
 
 function setArraySalidas()
 {

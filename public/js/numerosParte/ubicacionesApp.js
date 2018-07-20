@@ -7,6 +7,8 @@ thedataTables("dataTable", '/getubicaciones',
 ]
 );
 
+
+
 $("#chkRango").on("change",
     function()
     {

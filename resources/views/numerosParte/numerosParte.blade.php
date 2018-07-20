@@ -117,3 +117,10 @@
   
 
 @endsection
+@section('scripts')
+  @parent
+
+ <script src="{{ asset('js/numerosParte/numerosParte.js') }}"></script>
+
+  
+  @endsection

@@ -43,6 +43,7 @@
                   <ul class="dropdown-menu">
                     <li><a class="navbar-brand" href="{{ url('/numerosParte') }}">Numeros de parte</a></li>
                     <li><a class="navbar-brand" href="{{ url('/unidadMedida') }}">Unidades de medida</a></li>
+                    <li><a class="navbar-brand" href="{{ url('/ubicaciones') }}">ubicaciones</a></li>
                     <li><a class="navbar-brand" href="{{ url('/numerosParte/CambioArea') }}">Cambio de area</a></li>
                 </ul>
                 </li>
