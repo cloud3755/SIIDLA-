@@ -92,7 +92,15 @@ Route::post('/unidadMedida', 'numeroParteController@nuevaUnidadMedida')->name('u
 Route::post('/subirarchivo', 'EntradasController@subirarchivo');
 
     }
+
+
 );
+
+// pdo
+
+Route::get('/cargar/pdo','pdoController@pdo');
+Route::post('/pdo','pdoController@subir');
+
 
 //Route::get('/home', 'HomeController@index')->name('home');
 /*

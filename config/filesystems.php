@@ -53,6 +53,11 @@ return [
             'root' => storage_path('Pod'),
         ],
 
+        'Pdo' => [
+            'driver' => 'local',
+            'root' => storage_path('Pdo'),
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
