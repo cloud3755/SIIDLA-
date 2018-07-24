@@ -13,7 +13,7 @@ class CreatePdoTable extends Migration
      */
     public function up()
     {
-        Schema::create('pdo', function (Blueprint $table) {
+        Schema::create('pdos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_usuario');
             $table->string('serial');
