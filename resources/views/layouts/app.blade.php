@@ -63,6 +63,9 @@
                   <span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a class="navbar-brand" href="{{ url('/cargar/pdo') }}">Subir pdo</a></li>
+                      @if(Auth::user()->isAdmin())
+                      <li><a class="navbar-brand" href="{{ url('/historial/pdo') }}">Historial pdo</a></li>
+                          @endif
                   </ul>
                 </li>
 
