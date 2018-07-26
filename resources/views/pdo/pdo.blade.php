@@ -25,9 +25,9 @@
 
                                     <div class="input-group">
 
-                                        <label class="sr-only" for="serial">Serial</label>
-                                        <div class="input-group-addon">Serial</div>
-                                        <input type="text"  class="form-control" name="serial" id="serial" placeholder="Serial" required>
+                                        <label class="sr-only" for="serial">No. Referencia</label>
+                                        <div class="input-group-addon">No. Referencia</div>
+                                        <input type="text"  class="form-control" name="serial" id="serial" placeholder="No. Referencia" required>
 
 
                                     </div>
@@ -35,7 +35,8 @@
                                     <div class="input-group">
                                         <label class="sr-only" for="Imagen">Imagen</label>
                                         <div class="input-group-addon">Imagen</div>
-                                        <input type="file" id="Ticket" name="Ticket" required>
+                                        <input accept="image/*" type="file" id="Ticket" name="Ticket" required>
+
                                     </div>
                                 </div>
 
@@ -55,7 +56,7 @@
 
                             <div class="text-center">
                                 <button type="submit"  class="btn btn-primary">Agregar</button>
-                                <button class="btn btn-danger" onclick="$('form').reset">Limpiar datos</button>
+
                             </div>
 
                         </form>
