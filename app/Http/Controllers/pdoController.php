@@ -77,7 +77,7 @@ class pdoController extends Controller
 
 
         $Pdo->save();
-
+        \Session::flash('Guardado','Se guardo correctamente ');
         return view("pdo.pdo");
 
     }
