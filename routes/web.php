@@ -98,7 +98,7 @@ Route::post('/subirarchivo', 'EntradasController@subirarchivo');
 
 // pdo
 
-Route::get('/cargar/pdo','pdoController@pdo');
+Route::get('/cargar/pdo','pdoController@pdo')->name("cargarPdo");
 Route::get('/historial/pdo','pdoController@historial');
 Route::post('/pdo','pdoController@subir');
 Route::post('/historial/pdo','pdoController@historial');

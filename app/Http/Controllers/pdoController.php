@@ -43,7 +43,7 @@ class pdoController extends Controller
             ->value('ruta_archivo');
                 $file= $descarga;
 
-        return response()->download(storage_path("/ Pdo/".$descarga.""));
+        return response()->download(storage_path("/Pdo/".$descarga.""));
     }
 
     public function subir(Request $request)
@@ -78,7 +78,7 @@ class pdoController extends Controller
 
         $Pdo->save();
 
-
+        return view("pdo.pdo");
 
     }
 
@@ -86,20 +86,18 @@ class pdoController extends Controller
     public function zip(Request $request)
     {
         $rutas = $request->input('cbox');
-        $files[]=array();
         foreach ($rutas as $key => $value){
-            $files = glob(storage_path("/Pdo/".$value.""));
+            $files[$key] = glob(storage_path("/Pdo/".$value.""));
         }
-
-
-
-
+        $archivos = call_user_func_array('array_merge', $files);
 
         $archiveFile = storage_path("/Pdo/files.zip");
         $archive = new ZipArchive();
         if ($archive->open($archiveFile, ZipArchive::CREATE | ZipArchive::OVERWRITE)) {
 
-            foreach ($files as $file) {
+
+
+            foreach ($archivos as $file) {
                 if ($archive->addFile($file, basename($file))) {
 
                     continue;
