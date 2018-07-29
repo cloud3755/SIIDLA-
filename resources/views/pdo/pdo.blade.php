@@ -47,11 +47,9 @@
                                         <select class="form-control"  id="id_cliente" name="id_cliente" required>
                                             <option value="Ninguna">Ninguna</option>
                                             <option value="1">Cliente1</option>
-
                                         </select>
                                     </div>
                                 </div>
-
                             </div>
 
                             <div class="text-center">

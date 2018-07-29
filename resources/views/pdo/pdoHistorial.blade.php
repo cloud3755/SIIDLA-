@@ -48,7 +48,7 @@
                             </div>
 
                             <div class="text-center">
-                                <button type="submit"  class="btn btn-primary">Consultar</button>
+                                <button type="submit" class="btn btn-primary">Consultar</button>
 
                             </div>
 
@@ -58,6 +58,8 @@
                     <form class="form"   enctype="multipart/form-data" method="POST"  action="/create-zip">
                         {{ csrf_field() }}
 
+                        <input type=hidden name=fechaInih id="fechaInih" value=0>
+                        <input type=hidden name=fechaFinalh id="fechaFinalh" value=0>
                     <div class="table-responsive">
                         <table class="table" id="tableEntrada">
                             <thead>

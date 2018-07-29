@@ -73,7 +73,7 @@ class pdoController extends Controller
 
          \Storage::disk('Pdo')->put($nombreunicoarchivo1,  \File::get($file1));
 
-        $file1->move(base_path('storage/Pdo/Cliente1'),$file1->getClientOriginalName());
+        //$file1->move(base_path('storage/Pdo/Cliente1'),$file1->getClientOriginalName());
 
 
         $Pdo->save();
@@ -86,12 +86,16 @@ class pdoController extends Controller
     public function zip(Request $request)
     {
         $rutas = $request->input('cbox');
+        $fechaIni = $request->input('fechaInih');
+        $fechaFinal = $request->input('fechaFinalh');
+
+
         foreach ($rutas as $key => $value){
             $files[$key] = glob(storage_path("/Pdo/".$value.""));
         }
         $archivos = call_user_func_array('array_merge', $files);
 
-        $archiveFile = storage_path("/Pdo/files.zip");
+        $archiveFile = storage_path("/Pdo/Pdo".$fechaIni."Al".$fechaFinal.".zip");
         $archive = new ZipArchive();
         if ($archive->open($archiveFile, ZipArchive::CREATE | ZipArchive::OVERWRITE)) {
 

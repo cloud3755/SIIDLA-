@@ -2,17 +2,23 @@ $( document ).ready(function() {
 
 
 
-    $( "#zip" ).click(function() {
-
-$( "input[type=checkbox]:checked" ).each(function () {
-
-    zipArchivos =   $( this ).val();
+    $( "#fechaIni" ).focus(function() {
 
 
-})
-
+        $fechaini = $(this).val();
+        $("#fechaInih").val($fechaini);
 
 
     });
+
+    $( "#fechaFinal" ).focus(function() {
+
+
+        $fechaFinal = $(this).val();
+        $("#fechaFinalh").val($fechaFinal);
+
+
+    });
+
 
 });
