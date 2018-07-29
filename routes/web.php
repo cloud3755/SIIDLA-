@@ -90,22 +90,28 @@ Route::get('/unidadMedida', 'numeroParteController@unidadMedida')->name('unidadM
 Route::post('/unidadMedida', 'numeroParteController@nuevaUnidadMedida')->name('unidadMedidaPost');
 
 Route::post('/subirarchivo', 'EntradasController@subirarchivo');
+// pdo
 
+
+
+
+        Route::post('/historial/pdo','pdoController@historial');
+
+        Route::get('pdo/download/{id}', 'pdoController@getDownload')->name("descargaPdo");
+
+        Route::post('create-zip/', 'pdoController@zip')->name('create-zip');
+        Route::get('/historial/pdo','pdoController@historial');
     }
 
 
 );
 
-// pdo
+
 
 Route::get('/cargar/pdo','pdoController@pdo')->name("cargarPdo");
-Route::get('/historial/pdo','pdoController@historial');
+
 Route::post('/pdo','pdoController@subir');
-Route::post('/historial/pdo','pdoController@historial');
 
-Route::get('pdo/download/{id}', 'pdoController@getDownload')->name("descargaPdo");
-
-Route::post('create-zip/', 'pdoController@zip')->name('create-zip');
 
 //Route::get('/home', 'HomeController@index')->name('home');
 /*

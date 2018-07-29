@@ -10,14 +10,8 @@
                     <div class="panel-heading">Subir pdo</div>
 
                     <div class="panel-body">
-                    <!-- @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                                </div>
-@endif -->
-                        @section('mensajesBackEnd')
-                            @parent
-                        @endsection
+
+
                         <form class="form"   enctype="multipart/form-data" method="POST"  action="/pdo">
                             {{ csrf_field() }}
                             <div class="row">
