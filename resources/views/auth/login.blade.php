@@ -43,7 +43,7 @@
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Recordarme
                                     </label>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                                 </button>
                                 <a/>        
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
+                                    Olvido su contraseña?
                                 </a>
                             </div>
                         </div>

@@ -48,7 +48,7 @@ Route::get('password/reset/{token}', [
   'uses' => 'Auth\ResetPasswordController@showResetForm'
 ]);
 
-Route::group( ['middleware' => ['auth', 'rol:any']],
+Route::group( ['middleware' => ['auth', 'rol:1-2-3']],
     function()
     {
         Route::get('/entradas', 'EntradasController@entradas')->name('entradas');
@@ -84,23 +84,12 @@ Route::post('/numerosParte/CambioArea', 'numeroParteController@nuevoCambioArea')
 Route::get('/numerosParte/CambioArea/historial/resumen', 'numeroParteController@showNumerosParteHistorialResumen');
 Route::get('/numerosParte/CambioArea/historial/{numeroParte}', 'numeroParteController@showNumeroParteHistorial')->name('showNumeroParteHistorial');
 
-
-
 Route::get('/unidadMedida', 'numeroParteController@unidadMedida')->name('unidadMedida');
 Route::post('/unidadMedida', 'numeroParteController@nuevaUnidadMedida')->name('unidadMedidaPost');
 
 Route::post('/subirarchivo', 'EntradasController@subirarchivo');
 // pdo
 
-
-
-
-        Route::post('/historial/pdo','pdoController@historial');
-
-        Route::get('pdo/download/{id}', 'pdoController@getDownload')->name("descargaPdo");
-
-        Route::post('create-zip/', 'pdoController@zip')->name('create-zip');
-        Route::get('/historial/pdo','pdoController@historial');
     }
 
 
@@ -113,14 +102,14 @@ Route::get('/cargar/pdo','pdoController@pdo')->name("cargarPdo");
 Route::post('/pdo','pdoController@subir');
 
 
-//Route::get('/home', 'HomeController@index')->name('home');
-/*
-Route::get('/login', 'HomeController@login')->name('login');
+Route::group( ['middleware' => ['auth', 'rol:1-2-3-4']],
+  function()
+  {
+    
+        Route::post('/historial/pdo','pdoController@historial');
+        Route::get('pdo/download/{id}', 'pdoController@getDownload')->name("descargaPdo");
 
-
-Route::post('/login', [
-	'uses' => 'Auth\LoginController@login'
-]);
-
-
-*/
+        Route::post('create-zip/', 'pdoController@zip')->name('create-zip');
+        Route::get('/historial/pdo','pdoController@historial');
+  }
+);

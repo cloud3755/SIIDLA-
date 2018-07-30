@@ -69,7 +69,11 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/entradas') }}">Sistema</a>
+                        @if(Auth::user()->id_rol == 4)
+                            <a href="{{ url('/historial/pdo') }}">Sistema</a>
+                        @else
+                            <a href="{{ url('/entradas') }}">Sistema</a>
+                        @endif
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <!-- <a href="{{ route('register') }}">Register</a> -->

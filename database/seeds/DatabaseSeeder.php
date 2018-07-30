@@ -37,6 +37,12 @@ class UsersTableSeeder extends Seeder {
                    'descripcion'     => 'User sin permisos especiales',
                  )
             );
+            db::table('roles')->insert(array(
+                   'rol' => "Cliente",
+                   'descripcion'     => 'Cliente, para poder ver pdos',
+                   
+                 )
+            );
             db::table('sucursales')->insert(array(
                    'nombre' => 'Estado de México',
                    'descripcion'     => 'Estado de México',

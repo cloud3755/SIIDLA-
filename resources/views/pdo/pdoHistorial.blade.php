@@ -19,7 +19,7 @@
                         @section('mensajesBackEnd')
                             @parent
                         @endsection
-                        <form class="form"   enctype="multipart/form-data" method="POST"  action="/historial/pdo">
+                        <form id="formConsultar" class="form"   enctype="multipart/form-data" method="POST"  action="/historial/pdo">
                             {{ csrf_field() }}
                             <div class="row">
                                 <div class="col-md-4">
@@ -55,7 +55,7 @@
                         </form>
 
                     </div>
-                    <form class="form"   enctype="multipart/form-data" method="POST"  action="/create-zip">
+                    <form id="formZip" class="form"   enctype="multipart/form-data" method="POST"  action="/create-zip">
                         {{ csrf_field() }}
 
                         <input type=hidden name=fechaInih id="fechaInih" value=0>
@@ -81,7 +81,7 @@
                                     <td>{{$historia->serial}}</td>
                                     <td><a href="{{route('descargaPdo', ['id' => $historia->id])}}">Descargar</a></td>
 
-                                    <td><input type="checkbox" name="cbox[]" value="{{$historia->ruta_archivo}}"> </td>
+                                    <td><input class="least1" type="checkbox" name="cbox[]" value="{{$historia->ruta_archivo}}"> </td>
 
 
 

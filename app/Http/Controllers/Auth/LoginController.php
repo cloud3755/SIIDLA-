@@ -48,7 +48,10 @@ class LoginController extends Controller
         );
         if(Auth::attempt($userdata, 0))
         {
-            return Redirect::to('/entradas');
+            if(Auth::user()->id_rol == 4)
+                return Redirect::to('/historial/pdo');
+            else
+                return Redirect::to('/entradas');
         }
         else
         {
