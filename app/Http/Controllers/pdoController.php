@@ -25,6 +25,7 @@ class pdoController extends Controller
         $fechaFinal = $request->fechaFinal;
 
         $historial = DB::table('pdos')
+            ->whereDate('created_at', '=', date('Y-m-d'))
             ->whereBetween('created_at', [$fechaIni, $fechaFinal])
             ->get();
 
@@ -65,7 +66,15 @@ class pdoController extends Controller
 
     $path = "storage/Pdo/Cliente1/".$file1->getClientOriginalName();
         $Pdo = new Pdo();
-        $Pdo->id_usuario = Auth::user()->id;
+
+        if($user = Auth::user())
+        {
+            $Pdo->id_usuario = Auth::user()->id;
+        }
+        else
+        {
+            $Pdo->id_usuario = 0;
+        }
         $Pdo->serial = $request->serial;
         $Pdo->id_cliente = $request->id_cliente;
         $Pdo->ruta_archivo = $nombreunicoarchivo1;
@@ -95,7 +104,7 @@ class pdoController extends Controller
         }
         $archivos = call_user_func_array('array_merge', $files);
 
-        $archiveFile = storage_path("/Pdo/Pdo".$fechaIni."Al".$fechaFinal.".zip");
+        $archiveFile = storage_path("/Pdo/Pdo".$fechaIni." Al ".$fechaFinal.".zip");
         $archive = new ZipArchive();
         if ($archive->open($archiveFile, ZipArchive::CREATE | ZipArchive::OVERWRITE)) {
 

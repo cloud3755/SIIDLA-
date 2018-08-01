@@ -1,22 +1,23 @@
 $( document ).ready(function() {
 
 
+    $fechaini = localStorage.getItem("fechaIni");
+    $fechaFinal= localStorage.getItem("fechaFinal");
 
-    $( "#fechaIni" ).focus(function() {
+
+    $("#fechaInih").val($fechaini);
+    $("#fechaFinalh").val($fechaFinal);
 
 
+
+    $( "#fechaIni" ).change(function() {
         $fechaini = $(this).val();
-        $("#fechaInih").val($fechaini);
-
-
+        localStorage.setItem("fechaIni", $fechaini);
     });
 
-    $( "#fechaFinal" ).focus(function() {
-
-
+    $( "#fechaFinal" ).change(function() {
         $fechaFinal = $(this).val();
-        $("#fechaFinalh").val($fechaFinal);
-
+        localStorage.setItem("fechaFinal", $fechaFinal);
 
     });
 

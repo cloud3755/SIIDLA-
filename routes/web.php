@@ -97,7 +97,7 @@ Route::post('/subirarchivo', 'EntradasController@subirarchivo');
 
 
 
-Route::get('/cargar/pdo','pdoController@pdo')->name("cargarPdo");
+Route::get('/cargar/pod','pdoController@pdo')->name("cargarPdo");
 
 Route::post('/pdo','pdoController@subir');
 
@@ -110,6 +110,6 @@ Route::group( ['middleware' => ['auth', 'rol:1-2-3-4']],
         Route::get('pdo/download/{id}', 'pdoController@getDownload')->name("descargaPdo");
 
         Route::post('create-zip/', 'pdoController@zip')->name('create-zip');
-        Route::get('/historial/pdo','pdoController@historial');
+        Route::get('/historial/pod','pdoController@historial');
   }
 );

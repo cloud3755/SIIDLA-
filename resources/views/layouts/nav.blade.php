@@ -41,12 +41,12 @@
 </li>
 
 <li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">PDO
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">POD
     <span class="caret"></span></a>
     <ul class="dropdown-menu">
-    <li><a class="navbar-brand" href="{{ url('/cargar/pdo') }}">Subir pdo</a></li>
+    <li><a class="navbar-brand" href="{{ url('/cargar/pod') }}">Subir pod</a></li>
         @if(Auth::user()->isAdmin())
-        <li><a class="navbar-brand" href="{{ url('/historial/pdo') }}">Historial pdo</a></li>
+        <li><a class="navbar-brand" href="{{ url('/historial/pod') }}">Historial pod</a></li>
         @endif
     </ul>
 </li>
