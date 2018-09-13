@@ -6,19 +6,28 @@ $(function(){
 
 thedataTables();
 
+$('#dataTable')
+
+        .on( 'draw.dt',   function () { setAreas(); } )
+        .dataTable();
+
 function  setAreas()
 {
     var areas = $("#areaTemplate").html();
+    
+    $(".areaSelect option").empty();
     $(".areaSelect").each(function()
     {
         var area = $(this).data('area');
         $(this).append(areas);
         $(this).val(area);
+        $(this).selectpicker('destroy');
         $(this).addClass("selectpicker")
         $(this).selectpicker('refresh');
         //$(this).addClass("selectpicker");
         
     });
+   
     //$('.selectpicker').selectpicker('render');
 }
 

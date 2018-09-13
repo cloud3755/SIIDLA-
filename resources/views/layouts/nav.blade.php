@@ -1,6 +1,4 @@
 
-
-
 <ul class="nav navbar-nav">
     
 @auth
