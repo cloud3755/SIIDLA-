@@ -19,10 +19,10 @@ class ubicacionesController extends Controller
 
     public function nuevaUbicacion(Request $request)
     {   
-        $ubicacion = $request->ubicacion;
+        $ubicaciontext = $request->ubicacion;
         $chkRango = $request->chkRango;
         $warnings = 0;
-        $this->returnMessage("Guardado", "HOLA", "ubicaciones");
+        
         if($chkRango =="on")
         {
             $inferior = $request->inferior;
@@ -31,13 +31,24 @@ class ubicacionesController extends Controller
             for($i = $inferior; $i <= $superior; $i++)
             {
                 $ubicacion = new Ubicacion;
-                //$ubicacion->
+                $ubicacion->ubicacion = $ubicaciontext.$i;
+                $ubicacion->descripcion="";
+                $ubicacion->capacidad = 0;
+                $ubicacion->save();
+                $ubicacion= null;
             }
         }
         else
         {
-
+            $ubicacion = new Ubicacion;
+            $ubicacion->ubicacion = $ubicaciontext;
+            $ubicacion->capacidad = 0;
+            $ubicacion->descripcion="";
+            $ubicacion->save();
         }
+       
+        \Session::flash('Guardado','Se guardaron las ubicaciones correctamente');
+        return redirect()->route("ubicaciones"); 
     }
 
 
